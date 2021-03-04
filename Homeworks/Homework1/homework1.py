@@ -1,9 +1,7 @@
 import pandas as pd
-
 import numpy as np
+import matplotlib.pyplot as plt
 
-
-# import matplotlib.pyplot as plt
 
 def pre_processing(x):
     x_max = x.max()
@@ -43,8 +41,15 @@ if __name__ == '__main__':
     last_test_row = test_set.iloc[-1]
 
     # Question3
-    w_0 = 0
-    w_1 = 1
-    w_2 = 2
-    w_3 = 3
-    y_i = w_0 + w_1 * x_new_age + w_2 * x_new_mrt + w_3 * x_new_nCon
+    # Question4
+
+    # Question5
+    fig, ax = plt.subplots(3, 3, figsize=(10, 10))
+    nIter = 400
+    alphas = [10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05, 0.01]
+    for i, ax in enumerate(ax.flat):
+        ax.plot(training_set)
+        ax.set_title(f"step size: {alphas[i]}")
+
+    plt.tight_layout()
+    plt.show()
