@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import sklearn.linear_model
 
 
 def pre_processing(x):
@@ -11,10 +10,6 @@ def pre_processing(x):
         temp = (x[i] - x_min) / (x_max - x_min)
         x[i] = temp
     return x
-
-
-def gradient_descent():
-    return 0
 
 
 if __name__ == '__main__':
@@ -49,29 +44,12 @@ if __name__ == '__main__':
     # Question4
 
     # Question5
-    # (a)
-    # print(training_set.columns)
-    col_name = list(training_set.columns)
-    col_name.insert(0, 'w0')
-    training_set = training_set.reindex(columns=col_name, fill_value=1).values
-    # print(training_set)
-    w = np.ones(4)
-    print(w.T @ training_set[0])
-    # print(training_set)
-    # print(w.T @ X[0])
-    # ans = w.T @ X
-    # print(ans)
-    # X = np.array()
-    # print(w.shape)
-    # print(training_set.shape)
-    # np.stack((w, training_set), axis=1)
-    #
-    # fig, ax = plt.subplots(3, 3, figsize=(10, 10))
-    # nIter = 400
-    # alphas = [10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05, 0.01]
-    # for i, ax in enumerate(ax.flat):
-    #     ax.plot(training_set)
-    #     ax.set_title(f"step size: {alphas[i]}")
-    #
-    # plt.tight_layout()
-    # plt.show()
+    fig, ax = plt.subplots(3, 3, figsize=(10, 10))
+    nIter = 400
+    alphas = [10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05, 0.01]
+    for i, ax in enumerate(ax.flat):
+        ax.plot(training_set)
+        ax.set_title(f"step size: {alphas[i]}")
+
+    plt.tight_layout()
+    plt.show()
