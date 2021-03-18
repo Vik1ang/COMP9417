@@ -29,6 +29,7 @@ def loss_achieved(w_t, training_values, prices_values, _size, hyper):
 
 
 if __name__ == '__main__':
+    np.set_printoptions(suppress=True)
     df = pd.read_csv("./real_estate.csv")
 
     # 1(a)
@@ -61,10 +62,19 @@ if __name__ == '__main__':
     training_set = x_new.values[:int(size / 2)]
     test_set = x_new.values[int(size / 2):]
 
-    first_training_row = training_set[0]
-    last_training_row = training_set[-1]
-    first_test_row = test_set[0]
-    last_test_row = test_set[-1]
+    x_print = pd.DataFrame(columns=['age', 'nearestMRT', 'nConvenience', 'price'])
+    x_print['age'] = x_new_age
+    x_print['nearestMRT'] = x_new_mrt
+    x_print['nConvenience'] = x_new_nCon
+    x_print['price'] = prices.values
+
+    training_print = x_print.values[:int(size / 2)]
+    test_print = x_print.values[int(size / 2):]
+
+    first_training_row = training_print[0]
+    last_training_row = training_print[-1]
+    first_test_row = test_print[0]
+    last_test_row = test_print[-1]
 
     print("first training row: ", first_training_row)
     print("last training row: ", last_training_row)
@@ -135,8 +145,9 @@ if __name__ == '__main__':
     epoch_times = 6
     for i, ax in enumerate(ax.flat):
         w = np.ones(4)
-        for index in range(training_size):
-            for _ in range(epoch_times):
+        for _ in range(epoch_times):
+        # for index in range(training_size):
+            for index in range(training_size):
                 # Xki = np.array([1, training_gd_set[index][0], training_gd_set[index][1], training_gd_set[index][2]])
                 Xki = np.array(training_gd_set[index])
                 wX = np.dot(w, training_gd_set[index].T)
@@ -158,8 +169,8 @@ if __name__ == '__main__':
     helper = []
     w = np.ones(4)
     helper.append(w)
-    for index in range(training_size):
-        for _ in range(epoch_times):
+    for _ in range(epoch_times):
+        for index in range(training_size):
             # Xki = np.array([1, training_gd_set[index][0], training_gd_set[index][1], training_gd_set[index][2]])
             Xki = np.array(training_gd_set[index])
             wX = np.dot(w, training_gd_set[index].T)
